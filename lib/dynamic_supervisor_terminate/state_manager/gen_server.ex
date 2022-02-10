@@ -46,8 +46,8 @@ defmodule DynamicSupervisorTerminate.GenServer do
     end
   end
 
-  def delete_child(module: module_name) do
-    case DSstate.get_plugin_pid(module_name) do
+  def delete_child(name) do
+    case DSstate.get_plugin_pid(name) do
       {:ok, :get_plugin_pid, pid} ->
         DynamicSupervisor.terminate_child(DynamicSupervisorRunner, pid)
 
